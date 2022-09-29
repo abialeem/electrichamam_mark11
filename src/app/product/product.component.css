@@ -1,0 +1,89 @@
+.product-container {
+    padding-bottom: 60px;
+}
+.product-container__image {
+    margin-bottom: 24px;
+    text-align: center;
+}
+.product-container__details {
+    margin: 0 auto;
+    max-width: 1024px;
+    padding: 16px;
+}
+.product-container__details .title {
+    font-size: 1.5rem;
+    line-height: 1.25;
+    margin-bottom: 6px;
+}
+.product-container__details .reviews {
+    display: flex;
+    align-items: center;
+    margin-bottom: 4px;
+}
+.product-container__details .reviews .rating {
+    margin-right: 12px;
+}
+.product-container__details .reviews .rating > i {
+    margin-right: 2px;
+    font-size: 1rem;
+    color: #aaa;
+    cursor: pointer;
+}
+.product-container__details .reviews .rating > i:nth-child(n + 1):nth-child(-n + 4) {
+    color: #f9d71c;
+}
+.product-container__details .reviews .review-link {
+    color: #525252;
+    font-size: 0.75rem;
+}
+.product-container__details .price-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 12px;
+}
+.product-container__details .price-container .price {
+    font-size: 1.75rem;
+    margin-right: 12px;
+}
+.product-container__details .price-container .availability {
+    font-size: 1rem;
+    text-transform: uppercase;
+}
+.product-container__details .description {
+    margin-bottom: 20px;
+}
+.product-container__details .cta .add-to-cart {
+    display: flex;
+    align-items: center;
+    margin-bottom: 40px;
+}
+.product-container__details .cta .add-to-cart > span {
+    margin-right: 4px;
+}
+.product-container__details .cta .add-to-cart > button {
+    height: 46px;
+    margin-left: 12px;
+    border-radius: 50px;
+}
+.product-container__details .cta .category {
+    text-transform: uppercase;
+    margin-bottom: 16px;
+}
+.product-container__details .cta .category > span {
+    margin-right: 6px;
+}
+.product-container__details .cta .social-links {
+    text-transform: uppercase;
+}
+.product-container__details .cta .social-links > span {
+    margin-right: 6px;
+}
+.product-container__details .cta .social-links > i {
+    font-size: 1rem;
+    margin: 0 8px;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+.product-container__details .cta .social-links > i:hover {
+    color: #1890ff;
+}
