@@ -9,6 +9,8 @@ import { ProductComponent } from './product/product.component';
 import { ProfileComponent } from './profile/profile.component';
 import { RegisterComponent } from './auth/components/register/register.component';
 import { AuthGuardService } from './guards/auth-guard.service';
+import { SellerComponent } from './sellers/seller/seller.component';
+import { SellersComponent } from './sellers/sellers/sellers.component';
 
 
 const routes: Routes = [
@@ -20,6 +22,8 @@ const routes: Routes = [
     component: ProfileComponent,
     canActivate: [AuthGuardService],
   },
+  { path: 'seller/:id', component: SellerComponent },
+  { path: 'sellers', component: SellersComponent },
   { path: 'product/:id', component: ProductComponent },
   { path: 'cart', component: CartComponent },
   {

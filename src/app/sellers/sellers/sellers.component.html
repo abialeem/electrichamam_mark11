@@ -1,0 +1,33 @@
+<div class="seller-container">
+    <div class="brands">
+        <div class="brands__header">
+          <h2 routerLink="/sellers">Brands</h2>
+        </div>
+        <div *ngIf="sellerloading" class="brands__loading">
+            <ng-template #indicatorTemplate>
+              <i
+                nz-icon
+                nzType="loading"
+                [ngStyle]="{ 'font-size': '2rem', margin: '0 auto' }"
+              ></i>
+            </ng-template>
+            <nz-spin nzSimple [nzIndicator]="indicatorTemplate"> </nz-spin>
+          </div>
+        <div class="brands__list" *ngIf="!sellerloading">
+    
+          <div class="brand-card" *ngFor="let b of brands">
+            <div class="brand-card__image" routerLink="/seller/{{ b.id }}">
+              <img src="../assets/{{ b.image }}" alt="" />
+            </div>
+            <div class="brand-card__info">
+              <header>
+                <div class="title">
+                  <div class="brand-name">{{ b.name }}</div>
+                </div>
+              </header>
+            </div>
+          </div>
+        </div>
+      </div>
+</div>
+

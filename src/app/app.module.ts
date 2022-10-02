@@ -34,6 +34,8 @@ import { HeaderComponent } from './header/header.component';
 import { ProductCardComponent } from './product-card/product-card.component';
 import { ProductComponent } from './product/product.component';
 import { ProfileComponent } from './profile/profile.component';
+import { SellersComponent } from './sellers/sellers/sellers.component';
+import { SellerComponent } from './sellers/seller/seller.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -50,6 +52,8 @@ import { ProfileComponent } from './profile/profile.component';
     HeaderComponent,
     FooterComponent,
     ProductCardComponent,
+    SellersComponent,
+    SellerComponent,
   ],
   imports: [
     BrowserModule,

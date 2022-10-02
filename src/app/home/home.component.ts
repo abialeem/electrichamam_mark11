@@ -1,7 +1,9 @@
 import { Component, OnInit,  HostListener, ViewEncapsulation } from '@angular/core';
 import { Product, Products } from '../shared/models/product.model';
+import { Seller, Sellers } from '../shared/models/seller.model';
 import { CartService } from '../services/cart.service';
 import { ProductService } from '../services/product.service';
+import { SellerService } from '../services/seller.service';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -15,12 +17,14 @@ export class HomeComponent implements OnInit {
       name: 'Electric Hamams',
     }
   ];
+  brands: Seller[] = [];
   loading = false;
+  sellerloading = false;
   productPageCounter = 1;
   additionalLoading = false;
 
   constructor( private productService: ProductService,
-    protected cartService: CartService) { }
+    protected cartService: CartService,protected sellerService: SellerService) { }
 
     public screenWidth: any;
     public screenHeight: any;
@@ -35,6 +39,7 @@ export class HomeComponent implements OnInit {
       this.screenWidth = window.innerWidth;
       this.screenHeight = window.innerHeight;
       this.loading = true;
+      this.sellerloading = true;
       setTimeout(() => {
         this.productService.getAllProducts(9, this.productPageCounter).subscribe(
           (res: any) => {
@@ -45,6 +50,19 @@ export class HomeComponent implements OnInit {
           (err) => {
             console.log(err);
             this.loading = false;
+          }
+        );
+      }, 500);
+      setTimeout(() => {
+        this.sellerService.getAllSellers(9, this.productPageCounter).subscribe(
+          (res: any) => {
+            console.log(res);
+            this.brands = res;
+            this.sellerloading = false;
+          },
+          (err) => {
+            console.log(err);
+            this.sellerloading = false;
           }
         );
       }, 500);

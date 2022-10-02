@@ -1,5 +1,5 @@
 <div class="home-container">
-    <div class="categories">
+    <!-- <div class="categories">
       <div class="categories__header">
         <h2>Categories</h2>
       </div>
@@ -13,6 +13,26 @@
         >
           <ng-template swiperSlide *ngFor="let c of categories">
             <div class="category-card">{{ c.name }}</div>
+          </ng-template>
+        </swiper>
+      </div>
+    </div> -->
+    <div class="brands">
+      <div class="brands__header">
+        <h2 routerLink="/sellers">Brands</h2>
+      </div>
+      <div class="brands__list">
+        <swiper
+          [zoom]="false"
+          [slidesPerView]="screenWidth > 1200 ? 3 : 1"
+          [spaceBetween]="50"
+          [pagination]="true"
+          [loop]="true"
+        >
+          <ng-template swiperSlide *ngFor="let b of brands">
+            <div class="brand-card">
+              <img src="../assets/{{ b.image }}"  class="img-fluid rounded" routerLink="/seller/{{ b.id }}">
+            </div>
           </ng-template>
         </swiper>
       </div>
