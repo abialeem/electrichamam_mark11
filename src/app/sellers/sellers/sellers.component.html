@@ -1,8 +1,28 @@
-<div class="seller-container">
-    <div class="brands">
-        <div class="brands__header">
-          <h2 routerLink="/sellers">Brands</h2>
-        </div>
+   <!-- Content Header (Page header) -->
+   <div class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1 class="m-0" routerLink="/sellers">Brands</h1>
+        </div><!-- /.col -->
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a routerLink="/">Home</a></li>
+            <li class="breadcrumb-item active">All Brands</li>
+          </ol>
+        </div><!-- /.col -->
+      </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+  </div>
+  <!-- /.content-header -->
+
+<!-- Main content -->
+<div class="content">
+  <div class="container-fluid">
+
+
+   
+            <!--show loading while loading the brands starts here-->
         <div *ngIf="sellerloading" class="brands__loading">
             <ng-template #indicatorTemplate>
               <i
@@ -13,21 +33,27 @@
             </ng-template>
             <nz-spin nzSimple [nzIndicator]="indicatorTemplate"> </nz-spin>
           </div>
-        <div class="brands__list" *ngIf="!sellerloading">
-    
-          <div class="brand-card" *ngFor="let b of brands">
-            <div class="brand-card__image" routerLink="/seller/{{ b.id }}">
-              <img src="../assets/{{ b.image }}" alt="" />
-            </div>
-            <div class="brand-card__info">
-              <header>
-                <div class="title">
-                  <div class="brand-name">{{ b.name }}</div>
-                </div>
-              </header>
-            </div>
-          </div>
+
+          <!--show loading while loading the brands ends here-->
+
+<!--brands list setup starts here-->
+<div class="row" *ngIf="!sellerloading">
+
+  <div class="col-sm-4" *ngFor="let b of brands">
+    <div class="position-relative" routerLink="/seller/{{ b.id }}" style="margin:5px;">
+      <img src="../assets/{{ b.image }}" alt="Photo of a brand" class="img-fluid">
+      <div class="ribbon-wrapper ribbon-lg">
+        <div class="ribbon bg-success text-lg">
+          {{ b.name }}
         </div>
       </div>
+    </div>
+  </div>
+ 
+</div>
+      <!--brands list setup ends here-->
+
+
+</div>
 </div>
 

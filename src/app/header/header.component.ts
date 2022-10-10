@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HostListener } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 import { CartService } from '../services/cart.service';
 import { TokenStorageService } from '../services/token-storage.service';
@@ -28,7 +29,7 @@ export class HeaderComponent implements OnInit {
 
   constructor( private _token: TokenStorageService,
     private _auth: AuthService,
-    private _cart: CartService) { 
+    private _cart: CartService,private router: Router) { 
       this.getScreenSize();
       this._auth.user.subscribe((user) => {
         if (user) this.isLoggedIn = true;
@@ -58,7 +59,7 @@ export class HeaderComponent implements OnInit {
   
     logout() {
       this._auth.logout();
-      this.isMenuOpen = false;
+      this.router.navigate(['/']);
     }
 
    

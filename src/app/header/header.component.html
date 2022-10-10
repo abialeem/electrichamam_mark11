@@ -1,45 +1,47 @@
-<header class="header-container">
-    <div class="header-container__left">
-      <button
-        nz-button
-        nzType="text"
-        size="large"
-        (click)="toggleMenu()"
-        nzShape="circle"
-        nzSize="large"
-      >
-        <i
-          nz-icon
-          nzType="menu"
-          [ngStyle]="{ 'font-size': '1.25rem', 'padding-top': '6px' }"
-        ></i>
-      </button>
-    </div>
-    <div class="header-container__middle">
-      <h3 routerLink="/">Electric Hamam</h3>
-    </div>
-    <div class="header-container__right">
-      <ng-container>
-        <div class="cart-counter">{{ cartData.products.length }}</div>
-        <button
-          nz-button
-          nz-dropdown
-          nzType="text"
-          nzTrigger="click"
-          nzPlacementType="right"
-          nzShape="circle"
-          nzSize="large"
-          [nzDropdownMenu]="menu"
-          [nzVisible]="dropdownVisible"
-          (nzVisibleChange)="toggleDropdown()"
-        >
-          <i
-            nz-icon
-            nzType="shopping-cart"
-            [ngStyle]="{ fontSize: '24px', paddingTop: '3px' }"
-          ></i>
-        </button>
-        <nz-dropdown-menu #menu="nzDropdownMenu">
+<nav class="main-header navbar navbar-expand navbar-white navbar-light">
+  <!-- Left navbar links -->
+  <ul class="navbar-nav">
+    <li class="nav-item">
+      <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+    </li>
+    <li class="nav-item d-none d-sm-inline-block">
+      <a routerLink="/" class="nav-link">Electric Hamam</a>
+    </li>
+  </ul>
+
+  <!-- Right navbar links -->
+  <ul class="navbar-nav ml-auto">
+
+    <!-- Notifications Dropdown Menu -->
+    <li class="nav-item dropdown">
+      <a class="nav-link" data-toggle="dropdown" href="#">
+        <i class="far fa-bell"></i>
+        <span class="badge badge-warning navbar-badge">0</span>
+      </a>
+      <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+        <span class="dropdown-header">0 Notifications</span>
+        <!-- <div class="dropdown-divider"></div>
+        <a href="#" class="dropdown-item">
+          <i class="fas fa-envelope mr-2"></i> 4 new messages
+          <span class="float-right text-muted text-sm">3 mins</span>
+        </a>
+        <div class="dropdown-divider"></div> -->
+        <div class="dropdown-divider"></div>
+        <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
+      </div>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" data-widget="fullscreen" href="#" role="button">
+        <i class="fas fa-expand-arrows-alt"></i>
+      </a>
+    </li>
+    <li class="nav-item dropdown">
+      <a class="nav-link" data-toggle="dropdown" >
+        <i class="fa fa-shopping-cart"  [ngStyle]="{ fontSize: '24px' }"></i>
+        <span class="badge badge-info navbar-badge">{{ cartData.products.length }}</span>
+      </a>
+      <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+        
           <div class="cart-dropdown">
             <div
               class="cart-dropdown__empty"
@@ -119,66 +121,118 @@
               </div>
             </div>
           </div>
-        </nz-dropdown-menu>
-      </ng-container>
-    </div>
-  </header>
-  
-  <!-- <div class="nav-container" *ngIf="!isMobile">
-    <nav>
-      <ul>
-        <li routerLink="/">Home</li>
-        <li routerLink="/login">Login</li>
-        <li routerLink="/register">Register</li>
-        <li routerLink="/profile">Profile</li>
-        <li routerLink="/cart">Cart</li>
-        <li routerLink="/product/1">Product</li>
-        <li routerLink="/checkout">Checkout</li>
-        <li routerLink="/order-history">Order History</li>
-      </ul>
-    </nav>
-  </div> -->
-  
-  <div [className]="isMenuOpen ? 'side-menu show' : 'side-menu'">
-    <i nz-icon nzType="close" nzTheme="outline" (click)="toggleMenu()"></i>
-    <div class="side-menu__content">
-      <h2 routerLink="/" (click)="toggleMenu()">Electric Hamam</h2>
-      <nav>
-        <ul>
-          <li routerLink="/" (click)="toggleMenu()">Home</li>
-          <li routerLink="/cart" (click)="toggleMenu()">Cart</li>
-          <li routerLink="/profile" (click)="toggleMenu()">Profile</li>
-          <li routerLink="/order-history" (click)="toggleMenu()">
-            Order History
+       
+      </div>
+
+
+     
+
+
+    </li>
+  </ul>
+</nav>
+
+  <!-- Main Sidebar Container -->
+  <aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <!-- Brand Logo -->
+    <a  routerLink="/" class="brand-link">
+      <img src="../../assets/img/Logo.png" alt="electrichamam.com Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+      <span class="brand-text font-weight-light">Electric Hamam</span>
+    </a>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <!-- Sidebar user panel (optional) -->
+
+      <!-- SidebarSearch Form -->
+      <!-- <div class="form-inline">
+        <div class="input-group" data-widget="sidebar-search">
+          <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
+          <div class="input-group-append">
+            <button class="btn btn-sidebar">
+              <i class="fas fa-search fa-fw"></i>
+            </button>
+          </div>
+        </div>
+      </div> -->
+
+      <!-- Sidebar Menu -->
+      <nav class="mt-2">
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+          <!-- Add icons to the links using the .nav-icon class
+               with font-awesome or any other icon font library -->
+          
+          <li class="nav-item"  routerLink="/">
+            <a class="nav-link">
+              <i class="nav-icon fa fa-home"></i>
+              <p>
+                Hamam Home
+              </p>
+            </a>
+          </li>
+          <li class="nav-item" routerLink="/cart" >
+            <a class="nav-link">
+              <i class="nav-icon fa fa-shopping-cart"></i>
+              <p>
+                Cart
+              </p>
+            </a>
+          </li>
+          <li class="nav-item"  routerLink="/sellers" >
+            <a class="nav-link">
+              <i class="nav-icon fa fa-list"></i>
+              <p>
+                All Brands
+              </p>
+            </a>
+          </li>
+          <li class="nav-item"  routerLink="/profile" >
+            <a class="nav-link">
+              <i class="nav-icon fa fa-user"></i>
+              <p>
+                Profile
+              </p>
+            </a>
+          </li>
+          <li class="nav-item"  routerLink="/order-history" >
+            <a class="nav-link">
+              <i class="nav-icon fa fa-history"></i>
+              <p>
+                Order History
+              </p>
+            </a>
+          </li>
+          <li class="nav-item"  routerLink="/login" *ngIf="!isLoggedIn">
+            <a class="nav-link">
+              <i class="nav-icon fa fa-sign-in"></i>
+              <p>
+                Sign In
+              </p>
+            </a>
+          </li>
+          <li class="nav-item"  routerLink="/register" *ngIf="!isLoggedIn">
+            <a class="nav-link">
+              <i class="nav-icon fa fa-user-plus"></i>
+              <p>
+                Sign Up
+              </p>
+            </a>
+          </li>
+          <li class="nav-item" (click)="logout()" *ngIf="isLoggedIn">
+            <a class="nav-link">
+              <i class="nav-icon fa fa-sign-out"></i>
+              <p>
+                Sign Out
+              </p>
+            </a>
           </li>
         </ul>
       </nav>
-      <div class="auth_section">
-        <button
-          nz-button
-          routerLink="/login"
-          (click)="toggleMenu()"
-          *ngIf="!isLoggedIn"
-        >
-          Sign in
-        </button>
-        <button
-          nz-button
-          routerLink="/register"
-          (click)="toggleMenu()"
-          *ngIf="!isLoggedIn"
-        >
-          Sign up
-        </button>
-        <button nz-button (click)="logout()" *ngIf="isLoggedIn">
-          Sign out
-        </button>
-      </div>
+      <!-- /.sidebar-menu -->
     </div>
-  </div>
+    <!-- /.sidebar -->
+  </aside>
+
+
   
-  <div
-    [className]="isMenuOpen ? 'darken-background enable' : 'darken-background'"
-    (click)="toggleMenu()"
-  ></div>
   
