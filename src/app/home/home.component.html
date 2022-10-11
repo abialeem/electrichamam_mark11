@@ -45,14 +45,12 @@
 
 
 
-
-
-
-    
-    <div class="products">
-      <div class="products__header">
-        <h2>New Products</h2>
-      </div>
+  <div class="card">
+    <div class="card-header">
+      <h2 class="card-title" >Products</h2>
+    </div>
+    <!-- /.card-header -->
+    <div class="card-body">
       <div *ngIf="loading" class="products__loading">
         <ng-template #indicatorTemplate>
           <i
@@ -63,29 +61,42 @@
         </ng-template>
         <nz-spin nzSimple [nzIndicator]="indicatorTemplate"> </nz-spin>
       </div>
-      <div class="products__list" *ngIf="!loading">
+
+
+      <div class="row" *ngIf="!loading">
+        <div class="col-lg-3 col-md-6 col-sm-12"  *ngFor="let n of products" style="margin-top:5px;margin-bottom:5px;">
         <app-product-card
-          *ngFor="let n of products"
-          [id]="n.id"
-          [name]="n.name"
-          [image]="n.image"
-          [price]="n.price"
-          [description]="n.description"
-          [category]="n.category"
-          [quantity]="n.quantity"
+                        [id]="n.id"
+                        [title]="n.title"
+                        [image]="n.image"
+                        [price]="n.price"
+                        [description]="n.description"
+                        [category]="n.category"
+                        [quantity]="n.quantity"
+                        [seller_id]="n.seller_id"
           [onAdd]="cartService.addProduct.bind(cartService)"
         >
         </app-product-card>
+        </div>
       </div>
+
+
     </div>
-    <div class="load-products">
-      <button
-        nz-button
-        (click)="showMoreProducts()"
-        [nzLoading]="additionalLoading"
-      >
-        Show more
-      </button>
-    </div>
+    <!-- /.card-body -->
+  </div>
+
+
+  <div class="load-products">
+    <button
+      nz-button
+      (click)="showMoreProducts()"
+      [nzLoading]="additionalLoading"
+    >
+      Show more
+    </button>
+  </div>
+    
+   
+    
   </div>
 </div><!--content div ends here-->

@@ -46,7 +46,7 @@ export class ProductComponent implements OnInit {
   constructor(
     private _route: ActivatedRoute,
     private _product: ProductService,
-    private _cart: CartService
+    private _cart: CartService 
   ) {}
 
  ngOnInit(): void {
@@ -65,7 +65,7 @@ export class ProductComponent implements OnInit {
           this.product = product;
           if (product.quantity === 0) this.quantity = 0;
           else this.quantity = 1;
-
+ 
           if (product.images) {
             this.showcaseImages = product.images.split(';');
           }
@@ -80,10 +80,11 @@ export class ProductComponent implements OnInit {
       price: this.product.price,
       quantity: this.quantity,
       image: this.product.image,
-      name: this.product.name,
+      title: this.product.title,
       maxQuantity: this.product.quantity,
-      description: 'product description hard code',
-      category: 'Electric Hamams'
+      description: this.product.description,
+      category: 'Electric Hamams',
+      seller_id: this.product.seller_id
     });
   }
 

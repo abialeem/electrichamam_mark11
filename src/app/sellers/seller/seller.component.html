@@ -2,12 +2,13 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1 class="m-0" routerLink="/sellers"> Brand</h1>
+          <h1 class="m-0" routerLink="/sellers" style="text-transform: capitalize;">{{ brand.name }}</h1>
         </div><!-- /.col -->
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
             <li class="breadcrumb-item"><a routerLink="/">Home</a></li>
-            <li class="breadcrumb-item active">All Brands</li>
+            <li class="breadcrumb-item"><a routerLink="/sellers">All Brands</a></li>
+            <li class="breadcrumb-item active">{{ brand.name }}</li>
           </ol>
         </div><!-- /.col -->
       </div><!-- /.row -->
@@ -15,4 +16,129 @@
   </div>
   <!-- /.content-header -->
 
+<!-- Main content -->
+<div class="content">
+  <div class="container-fluid">
 
+    <div class="row">
+      <div class="col-md-3">
+
+
+      <!--show loading while loading the brand starts here-->
+      <div *ngIf="brandloading" class="brands__loading">
+        <ng-template #indicatorTemplate>
+          <i
+            nz-icon
+            nzType="loading"
+            [ngStyle]="{ 'font-size': '2rem', margin: '0 auto' }"
+          ></i>
+        </ng-template>
+        <nz-spin nzSimple [nzIndicator]="indicatorTemplate"> </nz-spin>
+      </div>
+
+      <!--show loading while loading the brand ends here-->
+
+         <!-- Profile Image -->
+         <div class="card card-primary card-outline">
+          <div class="card-body box-profile">
+            <div class="text-center">
+              <img class="image_thumb"
+                   src="../../../assets/{{brand.image}}"
+                   alt="Brand profile picture"
+                  
+                   >
+            </div>
+
+            <h3 class="profile-username text-center" style="text-transform:capitalize;">{{ brand.name }}</h3>
+
+            <p class="text-muted text-center">{{ brand.description }}</p>
+
+            <ul class="list-group list-group-unbordered mb-3">
+              <li class="list-group-item">
+                <b>Products</b> <a class="float-right">{{ brand.products_count }}</a>
+              </li>
+            </ul>
+
+            <!-- <a href="#" class="btn btn-primary btn-block"><b>Follow</b></a> -->
+          </div>
+          <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+
+
+
+        </div><!--col ms 3 div ends here-->
+
+
+        <div class="col-md-9"><!--md 9 col div --- container for products of brand starts here-->
+
+
+          <div class="card">
+
+            <div class="card-header p-2">
+              <ul class="nav nav-pills">
+                <li class="nav-item"><a class="nav-link active" href="#products" data-toggle="tab">All Products</a></li>
+                <li class="nav-item"><a class="nav-link" href="#offers" data-toggle="tab">Offers</a></li>
+              </ul>
+            </div><!-- /.card-header -->
+            <div *ngIf="productsloading" class="products__loading">
+              <ng-template #indicatorTemplate>
+                <i
+                  nz-icon
+                  nzType="loading"
+                  [ngStyle]="{ 'font-size': '2rem', margin: '0 auto' }"
+                ></i>
+              </ng-template>
+              <nz-spin nzSimple [nzIndicator]="indicatorTemplate"> </nz-spin>
+            </div>
+
+
+            <div class="card-body">
+              <div class="tab-content">
+                <div class="active tab-pane" id="products"><!--products tab pane starts here-->
+
+                   
+                    <!-- Brand Products starts here -->
+                    
+                      <div class="row" *ngIf="!productsloading">
+
+                       <div class="col-lg-4 col-md-6 col-sm-12"  *ngFor="let n of products" style="margin-top:5px;margin-bottom:5px;">
+                        <app-product-card 
+                        [id]="n.id"
+                        [title]="n.title"
+                        [image]="n.image"
+                        [price]="n.price"
+                        [description]="n.description"
+                        [category]="n.category"
+                        [quantity]="n.quantity"
+                        [seller_id]="n.seller_id"
+                        [onAdd]="cartService.addProduct.bind(cartService)"
+                      >
+                      </app-product-card>
+                       </div>
+                        
+
+                      </div>
+                    
+                    <!-- /.seller or brand products ends here-->
+
+                </div><!--products tab pane ends here-->
+                <div class="tab-pane" id="offers"><!--offers tab pane starts here-->
+
+<p>Offers Coming Soon</p>
+                </div><!--offers tab pane ends here-->
+
+              </div>
+            </div>
+          </div>
+
+
+
+        </div><!--md 9 col div --- container for products of brand ends here-->
+
+
+
+      </div><!--row div ends here-->
+
+    </div>
+ </div>

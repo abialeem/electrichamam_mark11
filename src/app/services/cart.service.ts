@@ -32,9 +32,9 @@ export class CartService {
     });
   }
 
-  addProduct(params: { id: number; price: number; quantity: number; image: string; name: string; maxQuantity: number; description: string; category: string; }): void {
-    const { id, price, quantity, image, name, maxQuantity, description, category } = params;
-    const product = { id, price, quantity, image, name, maxQuantity, description, category };
+  addProduct(params: { id: number; price: number; quantity: number; image: string; title: string; maxQuantity: number; description: string; category: string; seller_id:string;}): void {
+    const { id, price, quantity, image, title, maxQuantity, description, category, seller_id } = params;
+    const product = { id, price, quantity, image, title, maxQuantity, description, category, seller_id };
     if (!this.isProductInCart(id)) {
       if (quantity) this.cartData.products.push(product);
       else this.cartData.products.push({ ...product, quantity: 1 });

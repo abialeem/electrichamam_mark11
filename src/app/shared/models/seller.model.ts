@@ -7,5 +7,7 @@ export interface Sellers {
     id: number;
     name: string;
     image: string;
+    description: string;
+    products_count: number;
   }
    

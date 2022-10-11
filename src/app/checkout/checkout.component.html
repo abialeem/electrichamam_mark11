@@ -1,1 +1,257 @@
-<p>checkout works!</p>
+<!-- Content Header (Page header) -->
+ <div class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1 class="m-0">Checkout</h1>
+        </div><!-- /.col -->
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item active">Checkout</li>
+          </ol>
+        </div><!-- /.col -->
+      </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+  </div>
+  <!-- /.content-header -->
+<div class="content">
+  <div class="container-fluid" style="padding:20px;">
+
+
+                    <!--checkout setup starts here-->
+    <div class="checkout-container">
+
+    <div class="progress-container">
+        <nz-progress
+          [nzPercent]="getProgressPrecent()"
+          [nzShowInfo]="false"
+          [nzStrokeWidth]="3"
+        ></nz-progress>
+    </div>
+    {{    this.billingAddress[0].value }} <br>
+    {{    this.billingAddress[1].value }} <br>
+    {{    this.billingAddress[2].value }} <br>
+    {{    this.billingAddress[3].value }} <br>
+    {{    this.billingAddress[4].value }} <br>
+    {{    this.billingAddress[5].value }} <br>
+
+    <!-- FIRST STEP -->
+  <div class="card" *ngIf="currentStep === 1">
+    <div class="card-header">
+        <h3 class="card-title">
+          <i class="fas fa-text-width"></i>
+            Order Shipping Address 
+        </h3>
+      </div>
+    <div class="card-body">
+      
+      <form>
+        <div
+          class="form-group"
+          *ngFor="let field of billingAddress; index as i"
+        >
+          <label for="">{{ field.name }}</label>
+          <input
+            class="form-control"
+            nz-input
+            [type]="field.type"
+            [name]="field.name"
+            [placeholder]="field.placeholder"
+            [value]="field.value"
+            [(ngModel)]="field.value"
+          />
+        </div>
+      </form>
+      <button
+        nz-button
+        (click)="submitBilling()"
+        [disabled]="canBillingSubmit()"
+      
+        style="margin-top:20px;"
+      >
+        Continue
+      </button>
+
+    </div>
+  </div>
+   <!-- FIRST STEP  ENDS HERE-->
+
+    <!-- SECOND STEP -->
+  <div  class="card"  *ngIf="currentStep === 2">
+    <div class="card-header">
+        <h3 class="card-title">
+          <i class="fas fa-text-width"></i>
+            Order Payment Details
+        </h3>
+      </div>
+    <div class="card-body">
+     
+        <p class="card-title">Payment Method : <span class="text-info"> Cash On Delivery / Installation </span></p>
+
+      <form style="display:none;">
+
+        <div class="input-container">
+          <label for="">Card number</label>
+          <input
+            nz-input
+            type="text"
+            name="cardNumber"
+            [value]="cardNumber"
+            [(ngModel)]="cardNumber"
+            placeholder="1234 1234 1234 1234"
+            
+          />
+        </div>
+        <div class="input-container">
+          <label for="">Name on card</label>
+          <input
+            nz-input
+            type="text"
+            name="cardName"
+            [value]="cardName"
+            [(ngModel)]="cardName"
+            placeholder="John Doe"
+            
+          />
+        </div>
+        <div class="‼️">
+          <div class="input-container">
+            <label for="">Expiry date</label>
+            <input
+              nz-input
+              type="text"
+              name="cardExpiry"
+              [value]="cardExpiry"
+              [(ngModel)]="cardExpiry"
+              placeholder="06/30"
+        
+            />
+          </div>
+          <div class="input-container">
+            <label for="">Security code</label>
+            <input
+              nz-input
+              type="text"
+              name="cardCode"
+              [value]="cardCode"
+              [(ngModel)]="cardCode"
+              placeholder="123"
+          
+            />
+          </div>
+        </div>
+      </form>
+
+      <button
+        nz-button
+        [disabled]="!canPaymentSubmit()"
+        (click)="submitPayment()"
+        style="margin-left:20px;"
+      >
+        Continue
+      </button>
+    </div>
+  </div>
+    <!-- SECOND STEP ENDS HERE-->
+   
+ <!-- THIRD STEP STARTS HERE-->
+ <div class="card" *ngIf="currentStep === 3">
+    <div class="card-header">
+        <h3 class="card-title">
+          <i class="fas fa-text-width"></i>
+            Order Summary
+        </h3>
+      </div>
+    <div class="card-body">
+      <div class="summary-container__order">
+        
+        <div class="details">
+          <div><span>Item(s)</span> {{ cartData.products.length }}</div>
+          <div><span>Payment method</span> Cash On Delivery</div>
+          <div>
+            <span>Order total</span> {{ cartData.total | currency: "INR" }}
+          </div>
+        </div>
+        <button
+          nz-button
+          nzType="primary"
+          (click)="submitCheckout()"
+          [nzLoading]="loading"
+        >
+          Place order
+        </button>
+      </div>
+      <div class="summary-container__items">
+        <h2>Order Items</h2>
+        <div class="item-list">
+          <div class="item-container" *ngFor="let item of cartData.products">
+            <div class="item-image">
+              <img [src]="item.image" alt="" />
+            </div>
+            <div class="item-title">
+              {{ item.title }}
+            </div>
+            <div class="item-total">
+              {{ item.price | currency: "INR" }} x {{ item.quantity }} =
+              {{ item.quantity * item.price | currency: "INR" }} 
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- THIRD STEP ENDS HERE-->
+
+   <!-- LAST STEP--- STEP 4 - STARTS HERE -->
+   <div class="card" *ngIf="currentStep === 4">
+    <div class="card-header">
+        <h3 class="card-title">
+          <i class="fas fa-text-width"></i>
+            Order Placed ..... THANK YOU !!!
+        </h3>
+      </div>
+    <div class="card-body">
+    <div class="confirmation-container">
+      <header>
+        <div class="title">
+          <h1>Thank you for your order with Electric Hamam .</h1>
+          <p>Please check your email for the order confirmation</p>
+        </div>
+        <div class="order-id">
+          Order ID: <span>{{ orderId }}</span>
+        </div>
+      </header>
+      <button nz-button class="cta-button" routerLink="/">
+        Continue shopping
+      </button>
+      <div class="products-container">
+        <h2>Order Summary</h2>
+        <div class="products-container__list">
+          <div class="list-item" *ngFor="let item of products">
+            <div class="item-image">
+              <img [src]="item.image" alt="" />
+            </div>
+            <div class="item-title">
+              {{ item.title }}
+            </div>
+            <div class="item-total">
+              {{ item.price | currency: "INR" }} x {{ item.quantity }} =
+              {{ item.quantity * item.price | currency: "INR" }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+  </div>
+  <!-- LAST STEP--- STEP 4 - ENDS HERE -->
+
+
+
+    </div>
+     <!--checkout setup ends here-->
+
+
+  </div>
+</div>

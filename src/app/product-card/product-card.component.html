@@ -2,13 +2,13 @@
     <div class="product-card__image" routerLink="/product/{{ id }}">
       <img src="{{ image }}" alt="" />
     </div>
-    <div class="product-card__info">
+    <div class="product-card__info" routerLink="/product/{{ id }}">
       <header>
         <div class="title">
-          <div class="product-name">{{ name }}</div>
+          <div class="product-name">{{ title }}</div>
           <div class="product-short-desc">{{ description }}</div>
         </div>
-        <div class="product-price">{{ price | currency: "USD" }}</div>
+        <div class="product-price">{{ price | currency: "INR" }} / ft<sup>2</sup></div>
       </header>
     </div>
     <div class="product-card__cta">
@@ -20,13 +20,15 @@
             id: id,
             price: price,
             image: image,
-            name: name,
+            title: title,
             maxQuantity: quantity
           })
         "
+        
       >
         {{ quantity === 0 ? "Out of stock" : "Add to cart" }}
       </button>
+     
     </div>
   </div>
   

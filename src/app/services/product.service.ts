@@ -24,4 +24,8 @@ export class ProductService {
     console.log(id);
     return this._api.getTypeRequest('products/' + id);
   }
+
+ 
+
+
 }

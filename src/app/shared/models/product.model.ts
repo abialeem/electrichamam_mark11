@@ -5,13 +5,14 @@ export interface Products {
   
   export interface Product {
     id: number;
-    name: string;
+    title: string;
     category: string;
     description: string;
     image: string;
     price: number;
     quantity: number;
-    supplier?: string;
+    seller_id: string;
+    cat_id?: number ;
     images?: string;
   }
    
