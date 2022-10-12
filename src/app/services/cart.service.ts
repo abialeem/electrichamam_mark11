@@ -25,10 +25,11 @@ export class CartService {
     this.cartDataObs$.next(this.cartData);
   }
 
-  submitCheckout(userId: any, cart: any) {
+  submitCheckout(userId: any, cart: any, addressId: any) {
     return this._api.postTypeRequest('orders/create', {
       userId: userId,
       cart: cart,
+      addressId: addressId,
     });
   }
 

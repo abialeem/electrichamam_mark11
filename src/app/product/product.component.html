@@ -76,14 +76,16 @@
         <div class="description">{{ product.description }}</div>
         <div class="cta">
           <div class="add-to-cart">
-            <span>QTY:</span>
+            <span class="text-default">Feet<sup>2</sup> required </span> 
             <nz-input-number
               [(ngModel)]="quantity"
               [nzMin]="product.quantity > 0 ? 1 : 0"
               [nzMax]="product.quantity > 0 ? product.quantity : 0"
               [nzStep]="1"
+              [disabled]="incart"
             ></nz-input-number>
             <button
+            *ngIf="!incart"
               nz-button
               nzType="primary"
               (click)="addToCart()"
@@ -91,6 +93,7 @@
             >
               Add to cart
             </button>
+            <button class="btn btn-success" *ngIf="incart" >In Cart Already</button>
           </div>
           <div class="category">
             <span>Category: </span> <span class="text-info">Electric Hamam / Electric Under-Floor Heating / Radiant Floor Heating</span>

@@ -10,15 +10,15 @@ import { CartService } from '../services/cart.service';
 export class CheckoutComponent implements OnInit {
   currentUser: any;
   currentStep = 1;
-  cardNumber: string;
-  cardName: string;
-  cardExpiry: string;
-  cardCode: string;
   cartData: any;
   products: any;
+  orderTotal:number;
+  userAddresses:Array<any>;
+  selectedAddressId:number;
   loading = false;
-  successMessage = '';
+  successMessage = ''; 
   orderId;
+
 
 
   constructor(private _auth: AuthService, private _cart: CartService) {
@@ -26,8 +26,8 @@ export class CheckoutComponent implements OnInit {
     this._auth.user.subscribe((user) => {
       if (user) {
         this.currentUser = user;
-        this.billingAddress[0].value = user.fname;
-        this.billingAddress[1].value = user.email;
+        // this.billingAddress[0].value = user.fname;
+        // this.billingAddress[1].value = user.email;
       }
     });
 
@@ -38,17 +38,32 @@ export class CheckoutComponent implements OnInit {
    }
 
   ngOnInit(): void {
-    this.cardNumber = "1234123412341234";
-     this.cardName  = "Default Name";
-      this.cardExpiry  ="06/30";
-       this.cardCode = "123";
+  
+       console.log(this.cartData);
+       
+       setTimeout(() => {
+        this._auth
+          .getUserAddresses(this.currentUser.id)
+          .subscribe(
+            (res: any) => {
+              console.log(res);
+              this.userAddresses = res;
+            },
+            (err) => {
+              console.log(err);
+            }
+          );
+      }, 500);
   }
 
   submitCheckout() {
     this.loading = true;
+
+    
+
     setTimeout(() => {
       this._cart
-        .submitCheckout(this.currentUser.user_id, this.cartData)
+        .submitCheckout(this.currentUser.id, this.cartData, this.selectedAddressId)
         .subscribe(
           (res: any) => {
             console.log(res);
@@ -70,26 +85,46 @@ export class CheckoutComponent implements OnInit {
     return (this.currentStep / 4) * 100;
   }
 
-  submitBilling(): void {
+  submitBilling(addressId:number): void {     //user address selected here and then next step started
+    this.selectedAddressId = addressId;
     this.nextStep();
   }
 
-  canBillingSubmit(): boolean {
-    return this.billingAddress.filter((field) => field.value.length > 0)
-      .length !== 6
-      ? true
-      : false;
+  // canBillingSubmit(): boolean {
+  //   return this.billingAddress.filter((field) => field.value.length > 0)
+  //     .length !== 6
+  //     ? true
+  //     : false;
+  // }
+
+
+  getUserAddresses(){
+    setTimeout(() => {
+      this._auth
+        .getUserAddresses(this.currentUser.user_id)
+        .subscribe(
+          (res: any) => {
+            console.log(res);
+            this.userAddresses = res.addresses;
+          },
+          (err) => {
+            console.log(err);
+          }
+        );
+    }, 500);
   }
+
+
 
   submitPayment(): void {
     this.nextStep();
   }
 
-  canPaymentSubmit(): boolean {
-    return this.cardNumber && this.cardName && this.cardExpiry && this.cardCode
-      ? true
-      : false;
-  }
+  // canPaymentSubmit(): boolean {
+  //   return this.cardNumber && this.cardName && this.cardExpiry && this.cardCode
+  //     ? true
+  //     : false;
+  // }
 
   nextStep(): void {
     this.currentStep += 1;
@@ -103,43 +138,6 @@ export class CheckoutComponent implements OnInit {
     }
   }
 
-  billingAddress = [
-    {
-      name: 'Full name',
-      placeholder: 'Enter your full name',
-      type: 'text',
-      value: '',
-    },
-    {
-      name: 'Email',
-      placeholder: 'Enter your email address',
-      type: 'email',
-      value: '',
-    },
-    {
-      name: 'Address',
-      placeholder: 'Enter your address',
-      type: 'text',
-      value: '',
-    },
-    {
-      name: 'City',
-      placeholder: 'Enter your city',
-      type: 'text',
-      value: '',
-    },
-    {
-      name: 'ZIP',
-      placeholder: 'Enter your zip code',
-      type: 'text',
-      value: '',
-    },
-    {
-      name: 'Mobile Number',
-      placeholder: 'Enter your Mobile number',
-      type: 'text',
-      value: '',
-    },
-  ];
+
 
 }

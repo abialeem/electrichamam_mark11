@@ -29,12 +29,7 @@
           [nzStrokeWidth]="3"
         ></nz-progress>
     </div>
-    {{    this.billingAddress[0].value }} <br>
-    {{    this.billingAddress[1].value }} <br>
-    {{    this.billingAddress[2].value }} <br>
-    {{    this.billingAddress[3].value }} <br>
-    {{    this.billingAddress[4].value }} <br>
-    {{    this.billingAddress[5].value }} <br>
+     
 
     <!-- FIRST STEP -->
   <div class="card" *ngIf="currentStep === 1">
@@ -45,33 +40,24 @@
         </h3>
       </div>
     <div class="card-body">
-      
-      <form>
-        <div
-          class="form-group"
-          *ngFor="let field of billingAddress; index as i"
-        >
-          <label for="">{{ field.name }}</label>
-          <input
-            class="form-control"
-            nz-input
-            [type]="field.type"
-            [name]="field.name"
-            [placeholder]="field.placeholder"
-            [value]="field.value"
-            [(ngModel)]="field.value"
-          />
+          <h5>Shipping Addresses Found   <span class="badge badge-info">{{ userAddresses.length }}</span></h5>
+          <div class="row">
+        <div class="card col-lg-4 col-md-6 col-sm-12" *ngFor="let address of userAddresses;let i = index;"  style="margin:5px;padding:5px;">
+          <div class="card-header">
+            <h3 class="card-title">Address #{{ i+1 }}</h3>
+          </div>
+          <div class="card-body" >
+            <p class=""><span class="text-default">Address </span>   <span class="text-info" style="text-transform:capitalize;" > {{ address.address  }}</span></p>   
+            <p class=""><span class="text-default">City </span>   <span class="text-info" style="text-transform:capitalize;" > {{ address.city  }}</span></p>   
+            <p class=""><span class="text-default">Pincode </span>   <span class="text-info" style="text-transform:capitalize;" > {{ address.zip  }}</span></p>   
+            <p class=""><span class="text-default">Mobile </span>   <span class="text-info" style="text-transform:capitalize;" > {{ address.mobile  }}</span></p>   
+          </div>
+          <div class="card-footer" >
+            <button type="submit" class="btn btn-primary"  (click)="submitBilling(address.id)" >Select Address</button>
+          </div>
         </div>
-      </form>
-      <button
-        nz-button
-        (click)="submitBilling()"
-        [disabled]="canBillingSubmit()"
-      
-        style="margin-top:20px;"
-      >
-        Continue
-      </button>
+      </div>
+
 
     </div>
   </div>
@@ -85,72 +71,13 @@
             Order Payment Details
         </h3>
       </div>
-    <div class="card-body">
+    <div class="card-body" style="min-height:200px;">
      
         <p class="card-title">Payment Method : <span class="text-info"> Cash On Delivery / Installation </span></p>
 
-      <form style="display:none;">
-
-        <div class="input-container">
-          <label for="">Card number</label>
-          <input
-            nz-input
-            type="text"
-            name="cardNumber"
-            [value]="cardNumber"
-            [(ngModel)]="cardNumber"
-            placeholder="1234 1234 1234 1234"
-            
-          />
-        </div>
-        <div class="input-container">
-          <label for="">Name on card</label>
-          <input
-            nz-input
-            type="text"
-            name="cardName"
-            [value]="cardName"
-            [(ngModel)]="cardName"
-            placeholder="John Doe"
-            
-          />
-        </div>
-        <div class="‼️">
-          <div class="input-container">
-            <label for="">Expiry date</label>
-            <input
-              nz-input
-              type="text"
-              name="cardExpiry"
-              [value]="cardExpiry"
-              [(ngModel)]="cardExpiry"
-              placeholder="06/30"
-        
-            />
-          </div>
-          <div class="input-container">
-            <label for="">Security code</label>
-            <input
-              nz-input
-              type="text"
-              name="cardCode"
-              [value]="cardCode"
-              [(ngModel)]="cardCode"
-              placeholder="123"
-          
-            />
-          </div>
-        </div>
-      </form>
-
-      <button
-        nz-button
-        [disabled]="!canPaymentSubmit()"
-        (click)="submitPayment()"
-        style="margin-left:20px;"
-      >
-        Continue
-      </button>
+    </div>
+    <div class="card-footer">
+      <button class="btn btn-primary" (click)="submitPayment()" style="margin-left:20px;"> Confirm Payment Method </button>
     </div>
   </div>
     <!-- SECOND STEP ENDS HERE-->
@@ -163,26 +90,23 @@
             Order Summary
         </h3>
       </div>
-    <div class="card-body">
-      <div class="summary-container__order">
+    <div class="card-body row">
+
+      <div class="summary-container__order col-lg-4 col-md-6 col-sm-12"  >
         
-        <div class="details">
-          <div><span>Item(s)</span> {{ cartData.products.length }}</div>
-          <div><span>Payment method</span> Cash On Delivery</div>
-          <div>
-            <span>Order total</span> {{ cartData.total | currency: "INR" }}
-          </div>
+        <div class="box-profile row ">
+          <div class="col-6"><span class="text-default">Item(s) </span> </div>
+           <div  class="col-6"> <span class="text-info"> {{ cartData.products.length }}</span></div>
+          <div  class="col-6"><span class="text-default">Payment method </span> </div>
+           <div  class="col-6"><span class="text-info"> Cash On Delivery</span></div>
+          <div  class="col-6"><span class="text-default">Order total </span> </div> 
+          <div  class="col-6"> <span class="text-info"> {{ cartData.total | currency: "INR" }}</span></div>
         </div>
-        <button
-          nz-button
-          nzType="primary"
-          (click)="submitCheckout()"
-          [nzLoading]="loading"
-        >
-          Place order
-        </button>
+        <br/>
+        <br/>
+        <hr/>
       </div>
-      <div class="summary-container__items">
+      <div class="summary-container__items col-lg-7 col-md-6 col-sm-12">
         <h2>Order Items</h2>
         <div class="item-list">
           <div class="item-container" *ngFor="let item of cartData.products">
@@ -199,6 +123,10 @@
           </div>
         </div>
       </div>
+
+    </div>
+    <div class="card-footer">
+      <button class="btn btn-success btn-block" (click)="submitCheckout()" > Place order </button>
     </div>
   </div>
   <!-- THIRD STEP ENDS HERE-->

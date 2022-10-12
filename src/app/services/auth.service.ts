@@ -3,6 +3,8 @@ import { map } from 'rxjs/operators';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { ApiService } from './api.service';
 import { TokenStorageService } from './token-storage.service';
+import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -10,8 +12,9 @@ import { TokenStorageService } from './token-storage.service';
 export class AuthService {
   private userSubject: BehaviorSubject<any>;
   public user: Observable<any>;
+  private url = environment.apiUrl;
 
-  constructor(private _api: ApiService, private _token: TokenStorageService) {
+  constructor(private _api: ApiService, private _token: TokenStorageService,private http: HttpClient) {
     this.userSubject = new BehaviorSubject<any>(this._token.getUser());
     this.user = this.userSubject.asObservable();
   }
@@ -42,7 +45,7 @@ export class AuthService {
         })
       );
   }
-
+                //sign up or register function here
   register(user: any): Observable<any> {
     return this._api.postTypeRequest('auth/register', {
       fullName: user.fullName,
@@ -50,6 +53,20 @@ export class AuthService {
       password: user.password,
     });
   }
+
+            //get user details functions starts here
+
+    //get user addresses functions starts here
+    getUserAddresses(userid: Number): Observable<any> {
+
+      return this.http.get<any>(this.url + 'users/user_addresses/' + userid);
+     
+    }
+    //get user addresses functions ends here
+
+
+            //get user details functions ends here
+
 
   logout() {
     this._token.clearStorage();

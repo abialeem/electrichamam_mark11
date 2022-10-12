@@ -40,6 +40,7 @@ export class ProductComponent implements OnInit {
   id: number;
   product: Product;
   quantity: number;
+  incart:boolean;
   showcaseImages: any[] = [];
   loading = false;
 
@@ -72,6 +73,14 @@ export class ProductComponent implements OnInit {
           this.loading = false;
         });
       });
+
+      
+
+      if(this._cart.isProductInCart(this.id)){
+        this.incart = this._cart.isProductInCart(this.id);
+
+        // this.quantity = this._cart.cartData   ---to be done later
+      }
   }
 
   addToCart(): void {
