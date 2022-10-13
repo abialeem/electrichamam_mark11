@@ -145,16 +145,26 @@
     .cart-container__total .price > h3 {
         font-size: 1.25rem;
    }
-    .cart-container__total .cta {
+   .cta {
         width: 100%;
         padding: 0px;
         display: flex;
         flex-direction: column;
         align-items: center;
    }
-    .cart-container__total .cta > button {
+ .cta > button {
         height: 48px;
         width: 100%;
         margin-bottom: 12px;
    }
 }
+
+
+
+
+
+
+
+            /*new cart theme css starts from here*/
+       
+            

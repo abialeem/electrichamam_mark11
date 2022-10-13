@@ -1,43 +1,13 @@
-.header-container {
-    height: 60px;
-    padding: 0 16px;
-    display: flex;
-    align-items: center;
-    border-bottom: 1px solid #ccc;
-}
-.header-container > div {
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.header-container__middle {
-    flex-grow: 1;
-    text-align: center;
-}
-.header-container__right {
-    position: relative;
-}
-.header-container__right .cart-counter {
-    color: #fff;
-    background-color: red;
-    width: 17px;
-    height: 17px;
-    font-size: 11px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 50px;
-    position: absolute;
-    right: 0px;
-    top: 12px;
-    z-index: 2;
-}
-@media screen and (min-width: 768px) {
-    .header-container {
-        padding: 0 24px;
-   }
-}
+.gradient-custom {
+    /* fallback for old browsers */
+    background: #6a11cb;
+    
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: -webkit-linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1));
+    
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1))
+    }
 .cart-dropdown {
     max-width: 280px;
     min-width: 280px;

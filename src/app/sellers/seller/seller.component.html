@@ -2,12 +2,12 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1 class="m-0" routerLink="/sellers" style="text-transform: capitalize;">{{ brand.name }}</h1>
+          <h1 class="m-0" routerLink="/sellers" style="text-transform: capitalize;color:white;">{{ brand.name }}</h1>
         </div><!-- /.col -->
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
-            <li class="breadcrumb-item"><a routerLink="/">Home</a></li>
-            <li class="breadcrumb-item"><a routerLink="/sellers">All Brands</a></li>
+            <li class="breadcrumb-item"><a routerLink="/" style="color:white">Home</a></li>
+            <li class="breadcrumb-item"><a routerLink="/sellers" style="color:white">All Brands</a></li>
             <li class="breadcrumb-item active">{{ brand.name }}</li>
           </ol>
         </div><!-- /.col -->
@@ -18,7 +18,7 @@
 
 <!-- Main content -->
 <div class="content">
-  <div class="container-fluid">
+  <div class="container-fluid" style="padding:20px;">
 
     <div class="row">
       <div class="col-md-3">

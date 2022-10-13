@@ -1,4 +1,5 @@
-<div class="product-card">
+<div class="product-card card" style="background-color:white;">
+  <div class="card-body">
     <div class="product-card__image" routerLink="/product/{{ id }}">
       <img src="{{ image }}" alt="" />
     </div>
@@ -11,8 +12,12 @@
         <div class="product-price">{{ price | currency: "INR" }} / ft<sup>2</sup></div>
       </header>
     </div>
-    <div class="product-card__cta">
-      <button
+
+    </div>
+    <div class=" card-footer">
+
+      <button 
+      class="p-button"
         nz-button
         [disabled]="quantity === 0"
         (click)="
@@ -24,11 +29,12 @@
             maxQuantity: quantity
           })
         "
-        
+        *ngIf="!incart"
       >
         {{ quantity === 0 ? "Out of stock" : "Add to cart" }}
       </button>
-     
+      <button class="btn btn-success btn-block" *ngIf="incart"   routerLink="/cart" >In Cart Already</button>
     </div>
+
   </div>
   

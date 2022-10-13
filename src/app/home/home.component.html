@@ -3,11 +3,11 @@
   <div class="container-fluid">
     <div class="row mb-2">
       <div class="col-sm-6">
-        <h1 class="m-0">Featured Home</h1>
+        <h1 class="m-0" style="color:white;">Featured Home</h1>
       </div><!-- /.col -->
       <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
-          <li class="breadcrumb-item"><a href="#">Home</a></li>
+          <li class="breadcrumb-item"><a routerLink="/" style="color:white;">Home</a></li>
           <li class="breadcrumb-item active">Featured Home</li>
         </ol>
       </div><!-- /.col -->
@@ -16,15 +16,15 @@
 </div>
 <!-- /.content-header -->
 <div class="content">
-<div class="container-fluid">
+<div class="container-fluid" style="padding:20px;">
 
 
-  <div class="card">
+  <div class="card" style="background-color:transparent;">
     <div class="card-header">
-      <h2 class="card-title"  routerLink="/sellers" >Brands</h2>
+      <h3 class="card-title"  routerLink="/sellers" style="color:white;" >Brands</h3>
     </div>
     <!-- /.card-header -->
-    <div class="card-body">
+    <div class="card-body" style="background-color:transparent;">
       <swiper
       [zoom]="false"
       [slidesPerView]="screenWidth > 1200 ? 4 : 1"
@@ -45,12 +45,12 @@
 
 
 
-  <div class="card">
+  <div class="card"  style="background-color:transparent;">
     <div class="card-header">
-      <h2 class="card-title" >Products</h2>
+      <h2 class="card-title"  style="color:white;">Products</h2>
     </div>
     <!-- /.card-header -->
-    <div class="card-body">
+    <div class="card-body"  style="background-color:transparent;">
       <div *ngIf="loading" class="products__loading">
         <ng-template #indicatorTemplate>
           <i

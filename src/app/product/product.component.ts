@@ -50,6 +50,8 @@ export class ProductComponent implements OnInit {
     private _cart: CartService 
   ) {}
 
+
+
  ngOnInit(): void {
     this.loading = true;
     this._route.paramMap

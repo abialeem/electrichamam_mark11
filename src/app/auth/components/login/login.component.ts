@@ -13,6 +13,7 @@ export class LoginComponent implements OnInit {
   error = '';
   loading = false;
 
+
   constructor(private _auth: AuthService, private _router: Router) {}
 
   ngOnInit(): void {}

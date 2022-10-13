@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { CartService } from '../services/cart.service';
 
 @Component({
   selector: 'app-product-card',
@@ -24,9 +25,22 @@ export class ProductCardComponent implements OnInit {
   id!: number;
   @Input() onAdd: any;
 
-  constructor() { }
+
+  incart:boolean;
+
+  constructor( private _cart: CartService ) { }
 
   ngOnInit(): void {
+
+    if(this._cart.isProductInCart(this.id)){
+      this.incart = this._cart.isProductInCart(this.id);
+  
+      // this.quantity = this._cart.cartData   ---to be done later
+    }
+
+    
   }
 
-}
+  
+
+} 

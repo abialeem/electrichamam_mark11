@@ -6,6 +6,7 @@
     transition: all 0.2s;
     overflow: hidden;
     max-height:550px;
+    
 }
 .product-card__image > img {
     width: 100%;
@@ -42,15 +43,15 @@
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
-    -webkit-line-clamp: 4; /* number of lines to show */
-            line-clamp: 4; 
+    -webkit-line-clamp: 3; /* number of lines to show */
+            line-clamp: 3; 
     -webkit-box-orient: vertical;
 }
 .product-card__info > header .product-price {
     font-size: 1.375rem;
     font-weight: 600;
 }
-.product-card__cta > button {
+  .p-button {
     height: 48px;
     width: 100%;
     border: none;

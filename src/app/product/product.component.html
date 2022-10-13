@@ -2,13 +2,13 @@
   <div class="container-fluid">
     <div class="row mb-2">
       <div class="col-sm-6">
-        <h1 class="m-0"  style="text-transform: capitalize;">{{ product.title }}</h1>
+        <h1 class="m-0"  style="text-transform: capitalize;color:white;">{{ product.title }}</h1>
       </div><!-- /.col -->
       <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
-          <li class="breadcrumb-item"><a routerLink="/">Home</a></li>
-          <li class="breadcrumb-item"><a >Products</a></li>
-          <li class="breadcrumb-item active">{{ product.title }}</li>
+          <li class="breadcrumb-item"><a routerLink="/" style="color:white">Home</a></li>
+          <li class="breadcrumb-item"><a style="color:white">Products</a></li>
+          <li class="breadcrumb-item active" style="color:white">{{ product.title }}</li>
         </ol>
       </div><!-- /.col -->
     </div><!-- /.row -->
@@ -18,10 +18,10 @@
 
 <!-- Main content -->
 <div class="content">
-<div class="container-fluid">
+<div class="container-fluid" style="padding:20px;">
 
-<div class="product-container" *ngIf="!loading">
-    <div>
+<div class="product-container card" *ngIf="!loading">
+    <div class="card-body">
       <div class="product-container__image">
         <!-- Single Image -->
         <swiper
@@ -93,7 +93,7 @@
             >
               Add to cart
             </button>
-            <button class="btn btn-success" *ngIf="incart" >In Cart Already</button>
+            <button class="btn btn-success" *ngIf="incart"   routerLink="/cart" >In Cart Already</button>
           </div>
           <div class="category">
             <span>Category: </span> <span class="text-info">Electric Hamam / Electric Under-Floor Heating / Radiant Floor Heating</span>
