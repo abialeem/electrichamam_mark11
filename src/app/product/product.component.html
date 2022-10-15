@@ -20,10 +20,205 @@
 <div class="content">
 <div class="container-fluid" style="padding:20px;">
 
-<div class="product-container card" *ngIf="!loading">
+<div class="product-container card card-solid" *ngIf="!loading">
     <div class="card-body">
-      <div class="product-container__image">
-        <!-- Single Image -->
+
+      <div class="row"><!--start of product row 1-->
+
+        <div class="col-12 col-sm-6">    <!--product image and other images setup starts here-->
+          <h3 class="d-inline-block d-sm-none">{{ product.title }}</h3>
+          <div class="col-12">
+            <img [src]="activeImage" class="product-image" alt="Product Image">
+          </div>
+          <div class="col-12 product-image-thumbs">
+            <div class="product-image-thumb " *ngFor="let image of showcaseImages; index as i">
+              <img src="{{ image }}" alt="Product Image"  (click)="changeImage(image)">
+            </div>
+          </div>
+        </div>   <!--product image and other images setup ends here-->
+
+        <div class="col-12 col-sm-6">
+          <h3 class="my-3">{{ product.title }} Description</h3>
+          <p>{{ product.description }}</p>
+
+          <hr>
+          <h4>Available For Surface(s) </h4>
+          <div class="btn-group btn-group-toggle " data-toggle="buttons">
+            <label class="btn btn-default text-center active stone_bg" >
+              <!-- <input type="radio" name="color_option" id="color_option_a1" autocomplete="off" checked> -->
+              Stone
+              <br>
+              <!-- <i class="fas fa-circle fa-2x "></i> -->
+            </label>
+            <label class="btn btn-default text-center tile_bg">
+              <!-- <input type="radio" name="color_option" id="color_option_a2" autocomplete="off"> -->
+              Tile
+              <br>
+              <!-- <i class="fas fa-circle fa-2x text-blue"></i> -->
+            </label>
+            <label class="btn btn-default text-center marble_bg">
+              <!-- <input type="radio" name="color_option" id="color_option_a3" autocomplete="off"> -->
+              Marble
+              <br>
+              <!-- <i class="fas fa-circle fa-2x text-purple"></i> -->
+            </label>
+            <label class="btn btn-default text-center cement_bg">
+              <!-- <input type="radio" name="color_option" id="color_option_a4" autocomplete="off"> -->
+              Cement
+              <br>
+              <!-- <i class="fas fa-circle fa-2x text-red"></i> -->
+            </label>
+            <label class="btn btn-default text-center wood_bg">
+              <!-- <input type="radio" name="color_option" id="color_option_a5" autocomplete="off"> -->
+              Wood
+              <br>
+              <!-- <i class="fas fa-circle fa-2x text-orange"></i> -->
+            </label>
+          </div>
+
+          <h4 class="mt-3">Available Room Types </h4>
+          <div class="btn-group btn-group-toggle" data-toggle="buttons">
+            <label class="btn btn-default text-center">
+              <!-- <input type="radio" name="color_option" id="color_option_b1" autocomplete="off"> -->
+              <span class="text-xl">BD</span>
+              <br>
+              Bedroom
+            </label>
+            <label class="btn btn-default text-center">
+              <!-- <input type="radio" name="color_option" id="color_option_b2" autocomplete="off"> -->
+              <span class="text-xl">BT</span>
+              <br>
+              Bathroom
+            </label>
+            <label class="btn btn-default text-center">
+              <!-- <input type="radio" name="color_option" id="color_option_b3" autocomplete="off"> -->
+              <span class="text-xl">KT</span>
+              <br>
+              Kitchen
+            </label>
+            <label class="btn btn-default text-center">
+              <!-- <input type="radio" name="color_option" id="color_option_b4" autocomplete="off"> -->
+              <span class="text-xl">HL</span>
+              <br>
+              Hall  / Sun Room / Guest Room
+            </label>
+          </div>
+
+          <div class="mt-3" >
+            
+            <h4 class="mb-0">
+             <span class="text-default">Price </span>
+            </h4>
+            <h4 class="mt-1 ">
+              <span class="text-info"> {{ product.price | currency: "INR" }}  / ft<sup>2</sup></span>
+            </h4>
+          </div>
+
+          <div class="mt-4">
+
+            <span class="mt-1">
+            <span class="text-default">Feet<sup>2</sup> required </span> 
+            <nz-input-number
+              [(ngModel)]="quantity"
+              [nzMin]="product.quantity > 0 ? 1 : 0"
+              [nzMax]="product.quantity > 0 ? product.quantity : 0"
+              [nzStep]="1"
+              [disabled]="incart"
+              style="margin-right:10px;"
+            ></nz-input-number> 
+            </span>
+            <button
+            *ngIf="!incart"
+              
+              class="btn btn-primary btn-lg my-1"
+              (click)="addToCart()"
+              [disabled]="quantity === 0"
+              
+            >
+            <i class="fas fa-cart-plus fa-lg mr-2"></i>
+              Add To Cart
+            </button> 
+            <button class="btn btn-success my-1" *ngIf="incart"   routerLink="/cart" >
+              <i class="fas fa-cart-plus fa-lg mr-2"></i>
+               In Cart Already
+            </button>
+            
+
+            <!-- <div class="btn btn-default btn-lg btn-flat">
+              <i class="fas fa-heart fa-lg mr-2"></i>
+              Add to Wishlist
+            </div> -->
+          </div>
+
+          <div class="mt-4 product-share">
+            <a href="#" class="text-gray">
+              <i class="fab fa-facebook-square fa-2x"></i>
+            </a>
+            <a href="#" class="text-gray">
+              <i class="fab fa-twitter-square fa-2x"></i>
+            </a>
+            <a href="#" class="text-gray">
+              <i class="fas fa-envelope-square fa-2x"></i>
+            </a>
+            <a href="#" class="text-gray">
+              <i class="fas fa-rss-square fa-2x"></i>
+            </a>
+          </div>
+
+        </div>
+      </div>      <!--end of product row 1-->
+
+      <div class="row mt-4">
+        <nav class="w-100">
+          <div class="nav nav-tabs" id="product-tab" role="tablist">
+            <a class="nav-item nav-link active" id="product-desc-tab" data-toggle="tab" href="#product-desc" role="tab" aria-controls="product-desc" aria-selected="true">Description</a>
+            <!-- <a class="nav-item nav-link" id="product-comments-tab" data-toggle="tab" href="#product-comments" role="tab" aria-controls="product-comments" aria-selected="false">Comments</a> -->
+            <a class="nav-item nav-link" id="product-rating-tab" data-toggle="tab" href="#product-rating" role="tab" aria-controls="product-rating" aria-selected="false">Rating</a>
+          </div>
+        </nav>
+        <div class="tab-content p-3" id="nav-tabContent">
+          <div class="tab-pane fade show active" id="product-desc" role="tabpanel" aria-labelledby="product-desc-tab"> {{ product.description }} </div>
+          <!-- <div class="tab-pane fade" id="product-comments" role="tabpanel" aria-labelledby="product-comments-tab"> Vivamus rhoncus nisl sed venenatis luctus. Sed condimentum risus ut tortor feugiat laoreet. Suspendisse potenti. Donec et finibus sem, ut commodo lectus. Cras eget neque dignissim, placerat orci interdum, venenatis odio. Nulla turpis elit, consequat eu eros ac, consectetur fringilla urna. Duis gravida ex pulvinar mauris ornare, eget porttitor enim vulputate. Mauris hendrerit, massa nec aliquam cursus, ex elit euismod lorem, vehicula rhoncus nisl dui sit amet eros. Nulla turpis lorem, dignissim a sapien eget, ultrices venenatis dolor. Curabitur vel turpis at magna elementum hendrerit vel id dui. Curabitur a ex ullamcorper, ornare velit vel, tincidunt ipsum. </div> -->
+          <div class="tab-pane fade" id="product-rating" role="tabpanel" aria-labelledby="product-rating-tab"> Rating Coming Soon </div>
+        </div>
+      </div>
+
+
+
+
+
+
+
+
+     <!--
+
+
+          old product stuff goes here from the commented stuff below
+
+
+     -->
+    </div>
+    <div class="additional"></div>
+  </div>
+  
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ <!-- <div class="product-container__image">
+      // Single Image 
         <swiper
           [zoom]="true"
           [slidesPerView]="1"
@@ -35,7 +230,7 @@
             <img src="{{ product.image }}" alt="`Product image`" />
           </ng-template>
         </swiper>
-        <!-- Multiple images -->
+        // Multiple images 
         <swiper
           [zoom]="true"
           [slidesPerView]="1"
@@ -62,8 +257,8 @@
             <i nz-icon nzType="star" nzTheme="fill"></i>
             <i nz-icon nzType="star"></i>
           </div>
-          <!-- <span class="review-link">10 Review(s) |
-            <span style="cursor: pointer">Add your review</span></span> -->
+           <span class="review-link">10 Review(s) |
+            <span style="cursor: pointer">Add your review</span></span> 
         </div>
         <div class="price-container">
           <h2 class="price">{{ product.price | currency: "INR" }}  / ft<sup>2</sup></h2>
@@ -98,18 +293,16 @@
           <div class="category">
             <span>Category: </span> <span class="text-info">Electric Hamam / Electric Under-Floor Heating / Radiant Floor Heating</span>
           </div>
-          <!-- <div class="social-links">
+          <div class="social-links">
             <span>Share: </span>
             <i nz-icon nzType="facebook" nzTheme="outline"></i>
             <i nz-icon nzType="twitter" nzTheme="outline"></i>
             <i nz-icon nzType="google-plus" nzTheme="outline"></i>
             <i nz-icon nzType="mail" nzTheme="outline"></i>
-          </div> -->
+          </div> 
         </div>
-      </div>
-    </div>
-    <div class="additional"></div>
-  </div>
-  
-</div>
-</div>
+      </div> -->
+
+
+
+         

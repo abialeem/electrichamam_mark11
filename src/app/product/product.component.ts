@@ -44,6 +44,10 @@ export class ProductComponent implements OnInit {
   showcaseImages: any[] = [];
   loading = false;
 
+  activeImage =  '';
+
+ 
+
   constructor(
     private _route: ActivatedRoute,
     private _product: ProductService,
@@ -73,6 +77,7 @@ export class ProductComponent implements OnInit {
             this.showcaseImages = product.images.split(';');
           }
           this.loading = false;
+          this.activeImage = this.product.image;
         });
       });
 
@@ -83,6 +88,12 @@ export class ProductComponent implements OnInit {
 
         // this.quantity = this._cart.cartData   ---to be done later
       }
+
+     
+  }
+
+  changeImage(image: any){
+    this.activeImage = image ;
   }
 
   addToCart(): void {

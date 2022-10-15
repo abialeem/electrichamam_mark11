@@ -1,4 +1,25 @@
-.product-container {
+.stone_bg{
+    background-image: url("../../assets/img/stone_background.jpg");
+}
+
+.wood_bg{
+    background-image: url("../../assets/img/wood_background.jpg");
+}
+
+.marble_bg{
+    background-image: url("../../assets/img/marble_background.jpg");
+}
+
+
+.tile_bg{
+    background-image: url("../../assets/img/tile_background.jpg");
+}
+
+.cement_bg{
+    background-image: url("../../assets/img/cement_background.jpg");
+}
+
+/* .product-container {
     padding-bottom: 60px;
 }
 .product-container__image {
@@ -86,4 +107,4 @@
 }
 .product-container__details .cta .social-links > i:hover {
     color: #1890ff;
-}
+} */
