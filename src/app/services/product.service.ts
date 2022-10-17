@@ -21,10 +21,14 @@ export class ProductService {
   }
 
   getSingleProduct(id: Number): Observable<any> {
-    console.log(id);
+    // console.log(id);
     return this._api.getTypeRequest('products/' + id);
   }
 
+  getShippingAddress(id: Number): Observable<any> {
+    // console.log(id);
+    return this._api.getTypeRequest('orders/userShippingAddress?addressId=' + id);
+  }
  
 
 

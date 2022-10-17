@@ -43,7 +43,7 @@ export class HomeComponent implements OnInit {
       setTimeout(() => {
         this.productService.getAllProducts(9, this.productPageCounter).subscribe(
           (res: any) => {
-            console.log(res);
+            // console.log(res);
             this.products = res;
             this.loading = false;
           },
@@ -56,7 +56,7 @@ export class HomeComponent implements OnInit {
       setTimeout(() => {
         this.sellerService.getAllSellers(9, this.productPageCounter).subscribe(
           (res: any) => {
-            console.log(res);
+            // console.log(res);
             this.brands = res;
             this.sellerloading = false;
           },
@@ -74,7 +74,7 @@ export class HomeComponent implements OnInit {
       setTimeout(() => {
         this.productService.getAllProducts(9, this.productPageCounter).subscribe(
           (res: any) => {
-            console.log(res);
+            // console.log(res);
             this.products = [...this.products, ...res];
             this.additionalLoading = false;
           },

@@ -1,1 +1,66 @@
-<p>profile works!</p>
+<div class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1 class="m-0"  style="text-transform: capitalize;color:white;">Profile</h1>
+        </div><!-- /.col -->
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a routerLink="/" style="color:white">Home</a></li>      
+            <li class="breadcrumb-item active" style="color:white">Profile</li>
+          </ol>
+        </div><!-- /.col -->
+      </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+  </div>
+  <!-- /.content-header -->
+  
+  <!-- Main content -->
+  <div class="content">
+  <div class="container-fluid" style="padding:20px;">
+
+<div class="profile-container card" style="background:transparent;">
+    <div class="form-container card-body">
+      <nz-alert
+        [ngClass]="alertType"
+        nzShowIcon
+        [nzMessage]="alertMessage"
+        [ngStyle]="{ marginBottom: '12px' }"
+        *ngIf="alertVisible"
+      ></nz-alert>
+
+
+      
+      <form (ngSubmit)="onSubmit()" class="form form-primary">
+        <p class="alert alert-info">Full Name and Email Can Be Changed Here....Password Required For Authentication</p>
+        <div class="input-container form-group" *ngFor="let field of user">
+          <label for="field.key" class="label label-primary">{{ field.label }}</label>
+          <input
+            nz-input
+            [name]="field.key"
+            [type]="field.type"
+            [value]="field.value"
+            [(ngModel)]="field.value"
+            class="form-control"
+          />
+        </div>
+        <div class="cta-container">
+          <button
+            nz-button
+            type="submit"
+            [nzLoading]="loading"
+            [disabled]="canUpdate()"
+            class="btn btn-primary"
+            style=""
+          >
+            Update
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+  
+
+
+  </div>
+  </div>
