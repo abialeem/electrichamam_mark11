@@ -25,10 +25,10 @@ export class ProductService {
     return this._api.getTypeRequest('products/' + id);
   }
 
-  getShippingAddress(id: Number): Observable<any> {
-    // console.log(id);
-    return this._api.getTypeRequest('orders/userShippingAddress?addressId=' + id);
-  }
+  // getShippingAddress(id: Number): Observable<any> {
+  //   // console.log(id);
+  //   return this._api.getTypeRequest('orders/userShippingAddress?addressId=' + id);
+  // }
  
 
 

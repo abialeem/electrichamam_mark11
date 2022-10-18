@@ -36,6 +36,7 @@ import { ProductComponent } from './product/product.component';
 import { ProfileComponent } from './profile/profile.component';
 import { SellersComponent } from './sellers/sellers/sellers.component';
 import { SellerComponent } from './sellers/seller/seller.component';
+import { OrderHistoryItemComponent } from './order-history-item/order-history-item.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -54,6 +55,7 @@ import { SellerComponent } from './sellers/seller/seller.component';
     ProductCardComponent,
     SellersComponent,
     SellerComponent,
+    OrderHistoryItemComponent,
   ],
   imports: [
     BrowserModule,

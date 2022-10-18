@@ -20,8 +20,8 @@ export class AuthService {
   }
 
   getUser() {
-    console.log(this.userSubject);
-    console.log(this.userSubject.value);
+    // console.log(this.userSubject);
+    // console.log(this.userSubject.value);
     return this.userSubject.value;
   }
 
@@ -39,7 +39,7 @@ export class AuthService {
           };
           this._token.setToken(res.token);
           this._token.setUser(res.data[0]);
-          console.log(res);
+          // console.log(res);
           this.userSubject.next(user);
           return user;
         })

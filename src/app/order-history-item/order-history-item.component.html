@@ -1,0 +1,43 @@
+<div class="card">
+    <div class="card-header">
+        <p class="card-title">Order   <span class="badge badge-success">{{ orderlistindex }}</span> Summary  </p>
+        <span style="float:right;"><span class="text-info">Status </span> <span class="badge badge-info"> {{ status }}</span>  </span>
+        </div>
+        <div class="card-body row">
+            <dt class="col-4">Order Id</dt><dd class="col-8">{{ orderId  }}</dd>
+            <dt class="col-4">Order Date</dt><dd class="col-8">{{ placed_on | date:'medium' }}</dd>
+            <dt class="col-4">Order Amount</dt><dd class="col-8">{{ total_amount | currency: "INR" }}</dd>
+
+
+            <div class="callout callout-info">
+                <h5>Shipping / Billing Address</h5>
+
+                <div class="row">
+                    <dt class="col-4">Full Name </dt><dd class="col-8">{{ shippingAddress.full_name  }}</dd>
+                    <dt class="col-4">Email </dt><dd class="col-8">{{ shippingAddress.email }}</dd>
+                    <dt class="col-4">Address</dt><dd class="col-8">{{ shippingAddress.address }}</dd>
+                    <dt class="col-4">City</dt><dd class="col-8">{{ shippingAddress.city }}</dd>
+                    <dt class="col-4">Zip</dt><dd class="col-8">{{ shippingAddress.zip }}</dd>
+                    <dt class="col-4">Mobile</dt><dd class="col-8">{{ shippingAddress.mobile }}</dd>
+                </div>
+
+              </div>
+            
+
+              <div class="callout callout-info">
+                <h5>Order Products</h5>
+
+                <!--order products goes here-->
+                    <p>order products list goes here from order_details table with join from products table</p>
+              </div>
+             
+               
+
+        </div>
+      <div class=" card-footer">
+  
+        
+      </div>
+  
+    </div>
+    
