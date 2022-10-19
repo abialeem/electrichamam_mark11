@@ -1,15 +1,15 @@
-<div class="card">
+<div class="card" >
     <div class="card-header">
         <p class="card-title">Order   <span class="badge badge-success">{{ orderlistindex }}</span> Summary  </p>
-        <span style="float:right;"><span class="text-info">Status </span> <span class="badge badge-info"> {{ status }}</span>  </span>
+        <span style="float:right;"><span class="text-info">Status </span> <span class="badge badge-info p-2 " style="text-transform: capitalize;"> {{ status }}</span>  </span>
         </div>
         <div class="card-body row">
             <dt class="col-4">Order Id</dt><dd class="col-8">{{ orderId  }}</dd>
             <dt class="col-4">Order Date</dt><dd class="col-8">{{ placed_on | date:'medium' }}</dd>
-            <dt class="col-4">Order Amount</dt><dd class="col-8">{{ total_amount | currency: "INR" }}</dd>
+            <dt class="col-4">Order Amount</dt><dd class="col-8 text-info">{{ total_amount | currency: "INR" }}</dd>
 
 
-            <div class="callout callout-info">
+            <div class="callout callout-info my-3">
                 <h5>Shipping / Billing Address</h5>
 
                 <div class="row">
@@ -23,12 +23,27 @@
 
               </div>
             
-
-              <div class="callout callout-info">
-                <h5>Order Products</h5>
+              <h5>Order Products <span class="badge badge-info">{{ orderDetails.length }}</span></h5>
+                   <div class="callout callout-info my-3 row" *ngFor="let orderDetail of orderDetails;let i = index;">
+                   
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                     <img class="img-thumbnail"
+                             src="{{ orderDetail.image  }}"
+                             alt="{{ orderDetail.title  }} thumbnail"
+                             >
+                    </div>
+                    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 row">
+                    <dt class="col-6">Product Title</dt><dd class="col-6">{{ orderDetail.title  }}</dd>
+                    <dt class="col-6">Feet<sup>2</sup> Ordered</dt><dd class="col-6"><span class="badge badge-info p-2">{{orderDetail.quantity }} ft<sup>2</sup></span></dd>
+                    <dt class="col-6">Total Amount</dt><dd class="col-6">{{ orderDetail.quantity * orderDetail.price | currency:'INR' }}</dd>
+                    <dt class="col-6">Seller / Brand</dt><dd class="col-6" style="text-transform: capitalize;"><span class="badge badge-success p-2" style="background-color:#6610f2;color:#fff;"><i class="fa-solid fa-flag"></i> {{ orderDetail.name  }}</span></dd>
+                     </div>
+                    
 
                 <!--order products goes here-->
-                    <p>order products list goes here from order_details table with join from products table</p>
+                    <!-- <p>{{ orderDetails | json }}</p> -->
+
+
               </div>
              
                

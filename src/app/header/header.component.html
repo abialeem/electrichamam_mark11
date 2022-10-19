@@ -36,92 +36,90 @@
       </a>
     </li>
     <li class="nav-item dropdown">
-      <a class="nav-link" data-toggle="dropdown" >
+
+      <a class="nav-link" data-toggle="dropdown" ><!--cart icon on the header-->
         <i class="fa fa-shopping-cart" style="color:white;" ></i>
         <span class="badge badge-info navbar-badge">{{ cartData.products.length }}</span>
       </a>
-      <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+
+      <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right"><!--cart dropdown starts here-->
+        <span class="dropdown-header"  *ngIf="cartData.products.length === 0">
+          Your cart is empty.
+        </span>
+        <span class="dropdown-header"   *ngIf="cartData.products.length !== 0">
+        <span class="badge badge-success p-2" style="border-radius:10px;font-weight: bold;background-color: #6610f2;color:white;">
+          {{ cartData.products.length }}
+        </span> 
+          Item(s) In Cart
+        </span>
+        <div class="dropdown-divider"></div>
+        <section  *ngIf="cartData.products.length !== 0" ><!--section to check cart is not empty-->
+
+                  <section style="height:280px;overflow-y:scroll;border-bottom:1px solid #eee;">
+          <section  *ngFor="let product of cartData.products; index as i"  ><!--section to loop cart items-->
         
-          <div class="cart-dropdown">
-            <div
-              class="cart-dropdown__empty"
-              *ngIf="cartData.products.length === 0"
-            >
-              Your cart is empty.
-            </div>
-            <div
-              class="cart-dropdown__content"
-              *ngIf="cartData.products.length !== 0"
-            >
-              <div class="product-list">
-                <div
-                  class="product-list__item"
-                  *ngFor="let product of cartData.products; index as i"
-                  [ngStyle]="{
-                    'border-bottom':
-                      i !== cartData.products.length - 1 && '1px solid #ccc'
-                  }"
-                >
-                  <div class="product-item">
-                    <div
-                      class="product-item__remove"
-                      (click)="removeProductFromCart(product.id)"
-                    >
-                      X
-                    </div>
-                    <div class="product-item__image">
-                      <img [src]="product.image" alt="" />
-                    </div>
-                    <div class="product-item__description">
-                      <div class="product-name">{{ product.title }}</div>
-                      <div class="product-amount">
-                        {{ product.quantity }} x
+
+            <div class="row  dropdown-item p-2">
+              <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 row" >
+                <div class="col-4">
+                  <img [src]="product.image" class="img-thumbnail" alt="" />
+                </div>
+                <div class="col-8 text-wrap">
+                  <span>{{ product.title }}</span> 
+                </div>
+                
+              </div>
+              <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mb-2">
+                <span class="badge badge-info p-2">
+                        <span>{{ product.quantity }} ft<sup>2</sup></span> x
                         <span>{{ product.price | currency: "INR" }}</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                </span>
+
+                <span class="float-right text-muted text-sm" style="cursor:pointer;"  (click)="removeProductFromCart(product.id)"><i class="fas fa-trash mr-2 p-2" style="border-radius:10px;background-color:#dc3545;color:white;"></i></span>
               </div>
-              <div class="cart-info">
-                <div class="selected-amount">
-                  {{ cartData.products.length }} Item(s) selected
-                </div>
-                <div class="total-price">
-                  Total: {{ cartData.total | currency: "INR" }}
-                </div>
-              </div>
-              <div class="cart-cta">
-                <button
-                  nz-button
-                  nzSize="large"
-                  routerLink="/cart"
-                  (click)="toggleDropdown()"
-                  [ngStyle]="{
-                    borderLeft: 'none',
-                    borderRight: 'none',
-                    borderBottom: 'none'
-                  }"
-                >
-                  View cart
-                </button>
-                <button
-                  nz-button
-                  nzType="primary"
-                  nzSize="large"
-                  routerLink="/checkout"
-                  (click)="toggleDropdown()"
-                  [ngStyle]="{
-                    borderLeft: 'none',
-                    borderRight: 'none',
-                    borderBottom: 'none'
-                  }"
-                >
-                  Checkout
-                </button>
+
+              
+
+            </div>
+
+        <div class="dropdown-divider" *ngIf=" i !== cartData.products.length - 1"></div>
+
+        </section>
+                  </section>
+        <div class="row">
+          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mb-2">
+
+            <div class="p-2">
+             
+              <div class="total-price">
+                Total: {{ cartData.total | currency: "INR" }}
               </div>
             </div>
+            
           </div>
+
+
+          <div class=" col-lg-12 col-md-12 col-sm-12 col-xs-12  btn-group">
+            <button
+            class="btn btn-default"
+              routerLink="/cart"
+              (click)="toggleDropdown()"
+            >
+              View cart
+            </button>
+            <button
+            class="btn btn-info "
+              routerLink="/checkout"
+              (click)="toggleDropdown()"
+            >
+              Checkout
+            </button>
+          </div>
+
+        </div>
        
+        </section>
+     
       </div>
 
 

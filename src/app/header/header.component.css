@@ -65,21 +65,16 @@
 .cart-dropdown__content .product-list__item .product-item__description .product-amount > span {
     font-weight: 500;
 }
-.cart-dropdown__content .cart-info {
-    padding: 16px;
-}
-.cart-dropdown__content .cart-info .selected-amount {
-    font-size: 0.875rem;
-}
-.cart-dropdown__content .cart-info .total-price {
+
+ .total-price {
     font-size: 1.25rem;
     font-weight: 500;
 }
-.cart-dropdown__content .cart-cta {
+ .cart-cta {
     display: flex;
     flex-direction: row;
 }
-.cart-dropdown__content .cart-cta > button {
+ .cart-cta > button {
     width: 100%;
 }
 .nav-container {
