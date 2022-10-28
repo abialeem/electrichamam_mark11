@@ -13,6 +13,7 @@ export class AuthService {
   private userSubject: BehaviorSubject<any>;
   public user: Observable<any>;
   private url = environment.apiUrl;
+  private newUrl = environment.phpBackUrl;
 
   constructor(private _api: ApiService, private _token: TokenStorageService,private http: HttpClient) {
     this.userSubject = new BehaviorSubject<any>(this._token.getUser());
@@ -27,7 +28,7 @@ export class AuthService {
 
   login(credentials: any): Observable<any> {
     return this._api
-      .postTypeRequest('auth/login', {
+      .postTypeRequest('users/loginUser.php', {
         email: credentials.email,
         password: credentials.password,
       })
@@ -59,7 +60,7 @@ export class AuthService {
     //get user addresses functions starts here
     getUserAddresses(userid: Number): Observable<any> {
 
-      return this.http.get<any>(this.url + 'users/user_addresses/' + userid);
+      return this.http.get<any>(this.newUrl + 'users/getUserAddresses.php?id=' + userid);
      
     }
     //get user addresses functions ends here

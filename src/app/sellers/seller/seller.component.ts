@@ -45,7 +45,7 @@ export class SellerComponent implements OnInit {
       this.sellerService.getSingleSeller(this.brand_id).subscribe(
         (res: any) => {
           console.log(res);
-          this.brand = res;
+          this.brand = res['data'][0];
           this.brandloading = false;
         },
         (err) => {
@@ -59,7 +59,7 @@ export class SellerComponent implements OnInit {
       this.sellerService.getAllProductsBySeller(this.brand_id).subscribe(
         (res: any) => {
           console.log(res);
-          this.products = res;
+          this.products = res['data'];
           this.productsloading = false;
         },
         (err) => {

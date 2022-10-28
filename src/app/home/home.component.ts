@@ -41,10 +41,10 @@ export class HomeComponent implements OnInit {
       this.loading = true;
       this.sellerloading = true;
       setTimeout(() => {
-        this.productService.getAllProducts(9, this.productPageCounter).subscribe(
+        this.productService.getAllProducts().subscribe(
           (res: any) => {
-            // console.log(res);
-            this.products = res;
+            //  console.log(res);
+            this.products = res['data'];
             this.loading = false;
           },
           (err) => {
@@ -54,10 +54,10 @@ export class HomeComponent implements OnInit {
         );
       }, 500);
       setTimeout(() => {
-        this.sellerService.getAllSellers(9, this.productPageCounter).subscribe(
+        this.sellerService.getAllSellers().subscribe(
           (res: any) => {
             // console.log(res);
-            this.brands = res;
+            this.brands = res['data'];
             this.sellerloading = false;
           },
           (err) => {
@@ -72,10 +72,10 @@ export class HomeComponent implements OnInit {
       this.additionalLoading = true;
       this.productPageCounter = this.productPageCounter + 1;
       setTimeout(() => {
-        this.productService.getAllProducts(9, this.productPageCounter).subscribe(
+        this.productService.getAllProducts().subscribe(
           (res: any) => {
             // console.log(res);
-            this.products = [...this.products, ...res];
+            this.products = [...this.products, ...res['data']];
             this.additionalLoading = false;
           },
           (err) => {

@@ -11,25 +11,21 @@ import { Products } from '../shared/models/product.model';
 })
 export class SellerService {
   private url = environment.apiUrl;
+  private newUrl = environment.phpBackUrl;
   constructor(private http: HttpClient, private _api: ApiService) { }
 
-  getAllSellers(limitOfResults = 10, page: number): Observable<Sellers> {
-    return this.http.get<Sellers>(this.url + 'sellers', { 
-      params: {
-        limit: limitOfResults.toString(),
-        page: page,
-      },
-    });
+  getAllSellers(): Observable<Sellers> {
+    return this.http.get<Sellers>(this.newUrl + 'sellers/getAllSellers.php');
   }
 
   getSingleSeller(id: Number): Observable<any> {
     // console.log(id);
-    return this._api.getTypeRequest('sellers/' + id);
+    return this._api.getTypeRequest('sellers/getSingleSeller.php?id=' + id);
   }
 
 
   getAllProductsBySeller(sellerid: Number): Observable<Products> {
-    return this.http.get<Products>(this.url + 'sellers/seller_products/' + sellerid);
+    return this.http.get<Products>(this.newUrl + 'sellers/getSingleSellerProducts.php?id=' + sellerid);
     // return this._api.getTypeRequest('sellers/seller_products' + sellerid);
   }
 

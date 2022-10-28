@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'http://localhost:8080/api/v1/'
+  apiUrl: 'http://localhost:8080/api/v1/',
+  phpBackUrl: 'http://127.0.0.1/hamamwala_php_backend/api/'
 };
 /*
  * For easier debugging in development mode, you can import the following file

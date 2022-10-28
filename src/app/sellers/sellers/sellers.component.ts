@@ -27,10 +27,10 @@ export class SellersComponent implements OnInit {
     this.screenHeight = window.innerHeight;
     this.sellerloading = true;
     setTimeout(() => {
-      this.sellerService.getAllSellers(9, this.productPageCounter).subscribe(
+      this.sellerService.getAllSellers().subscribe(
         (res: any) => {
           console.log(res);
-          this.brands = res;
+          this.brands = res['data'];
           this.sellerloading = false;
         },
         (err) => {

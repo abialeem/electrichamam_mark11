@@ -69,7 +69,7 @@ export class ProductComponent implements OnInit {
         this.id = parseInt(productId);
         this._product.getSingleProduct(productId).subscribe((product) => {
           console.log(product);
-          this.product = product;
+          this.product = product['data'][0];
           if (product.quantity === 0) this.quantity = 0;
           else this.quantity = 1;
  

@@ -9,7 +9,7 @@ import { Address } from '../shared/models/address.model';
   providedIn: 'root'
 })
 export class AddressService {
-  private url: string = `${environment.apiUrl}orders/userShippingAddress`;
+  private url: string = `${environment.phpBackUrl}addresses/`;
 
   constructor(private http: HttpClient) { }
 
@@ -18,7 +18,7 @@ export class AddressService {
   }
 
   getAddress(id: number): Observable<Address> {
-    return this.http.get<Address>(`${this.url}/?addressId=${id}`);
+    return this.http.get<Address>(`${this.url}getSingleAddress.php?id=${id}`);
   }
 
 }
