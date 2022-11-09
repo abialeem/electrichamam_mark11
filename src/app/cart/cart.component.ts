@@ -8,16 +8,20 @@ import { CartService } from '../services/cart.service';
 })
 export class CartComponent implements OnInit {
 
-  cartData: any;
+  cartData: any = [];
 
   constructor(private _cart: CartService) {
     this._cart.cartDataObs$.subscribe((cartData) => {
       this.cartData = cartData;
-      console.log(cartData);
+      //console.log(cartData);
     });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+
+    // console.log(this.cartData);
+
+  }
 
   updateCart(id: number, quantity: number): void {
     console.log({ id, quantity });

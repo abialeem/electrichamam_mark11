@@ -20,8 +20,10 @@ export class CartService {
     private _api: ApiService
   ) {
     let localCartData = JSON.parse(localStorage.getItem('cart') || '{}');
-    if (localCartData) this.cartData = localCartData;
-
+    if (localCartData)
+    {
+      this.cartData = localCartData;
+    } 
     this.cartDataObs$.next(this.cartData);
   }
 

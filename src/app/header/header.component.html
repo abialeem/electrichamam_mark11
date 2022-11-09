@@ -39,21 +39,21 @@
 
       <a class="nav-link" data-toggle="dropdown" ><!--cart icon on the header-->
         <i class="fa fa-shopping-cart" style="color:white;" ></i>
-        <span class="badge badge-info navbar-badge">{{ cartData.products.length }}</span>
+        <span class="badge badge-info navbar-badge">{{ cartData.products?.length }}</span>
       </a>
 
       <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right"><!--cart dropdown starts here-->
-        <span class="dropdown-header"  *ngIf="cartData.products.length === 0">
+        <span class="dropdown-header"  *ngIf="cartData.products?.length === 0">
           Your cart is empty.
         </span>
-        <span class="dropdown-header"   *ngIf="cartData.products.length !== 0">
+        <span class="dropdown-header"   *ngIf="cartData.products?.length !== 0">
         <span class="badge badge-success p-2" style="border-radius:10px;font-weight: bold;background-color: #6610f2;color:white;">
-          {{ cartData.products.length }}
+          {{ cartData.products?.length }}
         </span> 
           Item(s) In Cart
         </span>
         <div class="dropdown-divider"></div>
-        <section  *ngIf="cartData.products.length !== 0" ><!--section to check cart is not empty-->
+        <section  *ngIf="cartData.products?.length !== 0" ><!--section to check cart is not empty-->
 
                   <section style="height:280px;overflow-y:scroll;border-bottom:1px solid #eee;">
           <section  *ngFor="let product of cartData.products; index as i"  ><!--section to loop cart items-->
@@ -92,7 +92,7 @@
             <div class="p-2">
              
               <div class="total-price">
-                Total: {{ cartData.total | currency: "INR" }}
+                Total: {{ cartData.total || 0 | currency: "INR" }}
               </div>
             </div>
             
